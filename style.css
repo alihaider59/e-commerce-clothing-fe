@@ -2,11 +2,12 @@
 
 * {
     margin: 0;
+    box-sizing: border-box;
 }
-
 
 html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
 }
 
 body {
@@ -14,7 +15,8 @@ body {
     margin: 0;
     box-sizing: border-box;
     font-family: "Spartan" sans-serif;
-
+    overflow-x: hidden;
+    max-width: 100vw;
 }
 
 h4 {
@@ -144,31 +146,47 @@ p {
 
 #features {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    justify-content: center;
+    align-items: stretch;
     flex-wrap: wrap;
+    gap: 20px;
     margin-top: 15px;
     text-align: center;
 }
 
 #features .feature {
+    flex: 1 1 160px;
+    min-width: 130px;
     border: 1px solid rgb(242, 225, 225);
-    padding: 25px 15px;
-    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
+    padding: 28px 18px;
+    box-shadow: 2px 3px 8px rgba(0, 0, 0, 0.08);
+    border-radius: 8px;
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+#features .feature:hover {
+    box-shadow: 2px 5px 15px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
 }
 
 #features .feature img {
-    width: 100%;
-    margin-bottom: 10px;
+    width: auto;
+    max-width: 56px;
+    height: 56px;
+    object-fit: contain;
+    margin: 0 auto 12px;
+    display: block;
 }
 
 #features .feature h4 {
     font-size: 14px;
+    font-weight: 600;
     background-color: lightskyblue;
-    margin: 0 25px;
-    border-radius: 5px;
-    padding: 3px 0;
+    margin: 0 auto;
+    border-radius: 6px;
+    padding: 6px 12px;
+    max-width: fit-content;
+    line-height: 1.3;
 }
 
 #features .feature:nth-child(2) h4 {
@@ -189,10 +207,6 @@ p {
 
 #features .feature:nth-child(6) h4 {
     background-color: rgb(210, 247, 118);
-}
-
-#features .feature:hover {
-    box-shadow: 2px 3px 10px rgba(0, 0, 0, 0.2);
 }
 
 /* Product Photos */
@@ -432,20 +446,19 @@ p {
     color: rgb(232, 84, 30);
 }
 
-/* Banner2 */
+/* Banner2 - Newsletter signup */
 
 #banner2 {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 9vh;
+    min-height: 9vh;
     background-color: rgb(40, 21, 59);
     background-image: url(img/banner/b14.png);
     background-repeat: no-repeat;
     background-position: 30% 50%;
     margin-top: 60px;
     margin-bottom: 35px;
-
 }
 
 #banner2 h2 {
@@ -463,23 +476,28 @@ p {
     color: rgb(115, 182, 27);
 }
 
-#banner2 form {
+#banner2 .form {
     display: flex;
-    justify-content: right;
-    width: 70%;
+    align-items: stretch;
+    justify-content: flex-end;
+    flex: 1 1 auto;
+    min-width: 0;
+    max-width: 480px;
 }
 
-#banner2 input {
-    padding: 18px 15px;
-    width: 45%;
+#banner2 .form input {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 14px 18px;
     border: none;
     border-top-left-radius: 5px;
     border-bottom-left-radius: 5px;
+    font-size: 15px;
 }
 
-#banner2 button {
-    padding: 18px 15px;
-    width: 10%;
+#banner2 .form button {
+    flex-shrink: 0;
+    padding: 14px 24px;
     font-size: 15px;
     color: white;
     border: none;
@@ -487,9 +505,10 @@ p {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     background-color: rgb(71, 143, 126);
+    white-space: nowrap;
 }
 
-#banner2 button:hover {
+#banner2 .form button:hover {
     cursor: pointer;
 }
 
@@ -499,10 +518,19 @@ p {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    max-width: 100%;
+    width: 100%;
 }
 
 #footer .logo {
     margin-bottom: 30px;
+    max-width: 120px;
+    height: auto;
+}
+
+#footer .col img:not(.logo) {
+    max-width: 100%;
+    height: auto;
 }
 
 #footer a {
@@ -544,6 +572,8 @@ p {
 .col .row img {
     border: 1px solid #000;
     border-radius: 5px;
+    max-width: 100%;
+    height: auto;
 }
 
 #footer .copyright {
@@ -551,13 +581,265 @@ p {
     text-align: center;
 }
 
+#footer .col {
+    min-width: 0;
+    flex: 1 1 200px;
+    max-width: 100%;
+}
 
-/* Media Query */
+#footer .col .row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
 
-@media (max-width: 425px) {
+/* B-banner & S-banner: responsive below 1440px */
+@media (max-width: 1439px) {
+    #s-banner {
+        padding: 0 40px;
+        gap: 15px;
+    }
 
+    #s-banner .s-box,
+    #s-banner .s-box2,
+    #s-banner .s-box3 {
+        max-width: none;
+        flex: 1 1 30%;
+        min-width: 0;
+        padding-left: 16px;
+        height: 28vh;
+    }
+
+    #s-banner h2 {
+        font-size: 20px;
+        margin-bottom: 6px;
+    }
+
+    #s-banner h4 {
+        font-size: 15px;
+    }
+
+    #b-banner .b-box,
+    #b-banner .b-box2 {
+        padding-left: 24px;
+        height: 40vh;
+    }
+
+    #b-banner h2 {
+        font-size: 32px;
+    }
+
+    #b-banner h4 {
+        font-size: 18px;
+    }
+
+    #b-banner p {
+        font-size: 15px;
+        margin-top: 6px;
+    }
+
+    #b-banner button {
+        padding: 10px 18px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 1024px) {
+    #s-banner {
+        padding: 0 25px;
+        gap: 12px;
+    }
+
+    #s-banner .s-box,
+    #s-banner .s-box2,
+    #s-banner .s-box3 {
+        height: 26vh;
+    }
+
+    #s-banner h2 {
+        font-size: 18px;
+    }
+
+    #s-banner h4 {
+        font-size: 14px;
+    }
+
+    #b-banner .b-box,
+    #b-banner .b-box2 {
+        width: 48%;
+        padding-left: 20px;
+        height: 38vh;
+    }
+
+    #b-banner h2 {
+        font-size: 28px;
+    }
+
+    #b-banner h4 {
+        font-size: 16px;
+    }
+
+    #b-banner p {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 768px) {
+    #s-banner {
+        flex-direction: column;
+        padding: 0 25px;
+        gap: 12px;
+    }
+
+    #s-banner .s-box,
+    #s-banner .s-box2,
+    #s-banner .s-box3 {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 100%;
+        height: 24vh;
+        min-height: 140px;
+    }
+
+    #s-banner h2 {
+        font-size: 18px;
+    }
+
+    #s-banner h4 {
+        font-size: 14px;
+    }
+
+    #b-banner {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    #b-banner .b-box,
+    #b-banner .b-box2 {
+        width: 100%;
+        height: 35vh;
+        min-height: 200px;
+        padding-left: 20px;
+    }
+
+    #b-banner h2 {
+        font-size: 26px;
+    }
+
+    #b-banner h4 {
+        font-size: 15px;
+    }
+
+    #b-banner p {
+        font-size: 13px;
+    }
+
+    #b-banner button {
+        padding: 10px 20px;
+    }
+}
+
+/* Media Query - Tablet (768px) - Navbar and layout */
+@media (max-width: 768px) {
     .global-p {
-        padding: 40px 40px;
+        padding: 30px 25px;
+    }
+
+    /* Navbar: use hamburger menu at 768px so it fits */
+    #header {
+        padding: 16px 24px;
+    }
+
+    #header img {
+        max-height: 38px;
+        width: auto;
+    }
+
+    /* Hamburger side menu - responsive width for all screens */
+    #header .navbar {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: min(280px, 85vw);
+        max-width: 280px;
+        height: 100vh;
+        height: 100dvh; /* better on mobile with address bar */
+        background-color: rgb(176, 231, 231);
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding: 56px 20px 24px;
+        font-size: 18px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        box-shadow: none;
+        transform: translateX(100%);
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #navbar.active {
+        transform: translateX(0);
+        box-shadow: -5px 0 20px rgba(0, 0, 0, 0.15);
+    }
+
+    #header .navbar #close {
+        display: block;
+        position: absolute;
+        top: 16px;
+        left: 20px;
+        font-size: 24px;
+        cursor: pointer;
+        padding: 8px;
+        min-width: 44px;
+        min-height: 44px;
+        box-sizing: border-box;
+    }
+
+    #header .navbar a {
+        padding: 14px 0;
+        font-size: 16px;
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    #header .navbar a.active::after,
+    #header .navbar a:hover::after {
+        display: none;
+    }
+
+    #header .nav {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 22px;
+    }
+
+    #header .nav .cart {
+        display: inline-block;
+    }
+
+    #banner2 .form {
+        max-width: 400px;
+    }
+
+    #features .feature {
+        flex: 1 1 calc(33.333% - 14px);
+        min-width: 120px;
+        max-width: none;
+        padding: 24px 14px;
+    }
+
+    #footer .col {
+        flex: 1 1 calc(50% - 15px);
+        min-width: 0;
+    }
+}
+
+/* Media Query - Mobile */
+@media (max-width: 425px) {
+    .global-p {
+        padding: 25px 20px;
     }
 
     .global-m {
@@ -575,82 +857,48 @@ p {
     }
 
 
+    /* Side menu: smaller on mobile */
     #header .navbar {
-        position: relative;
-        background-color: rgb(176, 231, 231);
-        font-size: 25px;
-        display: flex;
-        align-items: flex-start;
-        flex-direction: column;
-        right: -150px;
-        width: 150px;
-        padding: 50px 0px 10px 0px;
-        top: 0px;
-        position: fixed;
-        height: 70vh;
-        transition: 0.4s;
-    }
-
-    #navbar.active {
-        right: 0px;
-    }
-
-    .navbar #close {
-        position: absolute;
-        top: 18px;
-        left: 19px;
-    }
-
-    #header .nav {
-        font-size: 25px;
-    }
-
-    .navbar span {
-        margin-bottom: 2px;
-    }
-
-    #header .nav span {
-        margin-right: 10px;
+        width: min(240px, 72vw);
+        max-width: 240px;
+        padding: 48px 14px 16px;
+        font-size: 15px;
     }
 
     #header .navbar #close {
-        display: block;
-        ;
+        top: 12px;
+        left: 14px;
+        font-size: 20px;
+        min-width: 40px;
+        min-height: 40px;
+    }
+
+    #header .navbar a {
+        padding: 10px 0;
+        font-size: 15px;
+        min-height: 40px;
     }
 
     #header .nav {
-        display: block;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 22px;
+    }
+
+    #header .nav span {
+        margin-right: 0;
     }
 
     #header .cart {
         display: none;
     }
 
-    #s-banner {
-        flex-direction: column;
-    }
-
-    #s-banner .s-box {
-        width: auto
-    }
-
-    #s-banner .s-box2 {
-        width: auto
-    }
-
-    #s-banner .s-box3 {
-        width: auto
-    }
-
-    #b-banner {
-        flex-direction: column;
-    }
-
     .hero {
-
         background-image: url(img/hero4.png);
         padding: 0 20px;
         height: 45vh;
+        min-height: 280px;
         background-size: cover;
         background-repeat: no-repeat;
         background-position-x: 45%;
@@ -672,13 +920,32 @@ p {
         font-size: 12px;
     }
 
+    .hero button {
+        padding: 12px 50px 12px 40px;
+        font-size: 14px;
+    }
+
     #features {
-        padding-bottom: 20px;
+        padding-bottom: 24px;
+        gap: 16px;
+        justify-content: center;
     }
 
     #features .feature {
-        padding: 18px 3px;
-        margin-bottom: 30px;
+        flex: 1 1 calc(50% - 8px);
+        min-width: 0;
+        max-width: none;
+        padding: 20px 12px;
+    }
+
+    #features .feature img {
+        max-width: 48px;
+        height: 48px;
+    }
+
+    #features .feature h4 {
+        font-size: 12px;
+        padding: 5px 10px;
     }
 
     #products {
@@ -705,8 +972,10 @@ p {
 
     #banner {
         height: 50vh;
+        min-height: 220px;
         margin: 20px 0px;
         margin-bottom: 45px;
+        padding: 20px 16px;
     }
 
     #banner h2 {
@@ -714,109 +983,225 @@ p {
         margin: 20px 0px;
     }
 
-    #b-banner {
-        padding-top: 20px;
-        padding-bottom: 20px;
+    #banner h4 {
+        font-size: 18px;
     }
 
-    #b-banner .b-box {
-        margin-bottom: 20px;
-        background-position-x: 55%;
-        height: 40vh;
-        width: 100%
-    }
-
-    #b-banner .b-box2 {
-        background-position-x: 55%;
-        height: 40vh;
-        width: 100%
-    }
-
-    #b-banner .b-box h2 {
-        font-size: 40px;
-    }
-
-    #b-banner .b-box2 h2 {
-        font-size: 40px;
-    }
-
-    #s-banner {
-        margin: 0px;
-        padding: 0px 35px;
-        flex-direction: column;
-    }
-
-    #s-banner .s-box {
-        margin-bottom: 20px;
-        height: 40vh;
-        width: 100%
-    }
-
-    #s-banner .s-box2 {
-        margin-bottom: 20px;
-        height: 40vh;
-        width: 100%
-    }
-
-    #s-banner .s-box3 {
-        margin-bottom: 20px;
-        height: 40vh;
-        width: 100%
+    #banner button {
+        padding: 14px 28px;
+        font-size: 15px;
     }
 
     #banner2 {
         flex-direction: column;
         justify-content: center;
-        height: 15vh;
+        align-items: center;
+        min-height: auto;
+        padding: 30px 20px;
         margin-top: 45px;
         margin-bottom: 35px;
     }
 
     #banner2 div {
         text-align: center;
-    }
-
-    #banner2 form {
-        justify-content: center;
         width: 100%;
-        margin-top: 30px;
     }
 
+    #banner2 .form {
+        width: 100%;
+        max-width: 100%;
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    #banner2 .form input {
+        flex: 1 1 auto;
+        min-width: 0;
+        padding: 14px 16px;
+    }
+
+    #banner2 .form button {
+        padding: 14px 20px;
+    }
 
     #banner2 h2 {
-        font-size: 30px;
+        font-size: 22px;
     }
 
     #banner2 p {
-        font-size: 15px;
-    }
-    #banner2 .form input {
-        width: 75%;
-        padding: 20px 10px;
-        height: 15%;
-    }
-    #banner2 .form button {
-        width: 25%;
-        padding: 20px 10px;
-        height: 5.7vh;
+        font-size: 14px;
     }
 
     #footer {
-      padding-top: 5px;
-      margin: 15px 0px;
+        padding: 20px 20px 15px;
+        margin: 15px 0 0;
     }
 
     #footer .col {
-        margin-top: 25px;
+        flex: 1 1 100%;
+        max-width: 100%;
+        margin-top: 20px;
+    }
+
+    #footer .col:first-child {
+        margin-top: 0;
     }
 
     #footer .col .row {
         display: flex;
+        flex-wrap: wrap;
+    }
+
+    #footer .col .row img {
+        max-width: 140px;
     }
 
     #footer .copyright {
-        margin-top: 30px;
-        text-align: left;
+        margin-top: 25px;
+        padding-top: 20px;
+        text-align: center;
+        font-size: 14px;
     }
 
+}
+
+/* Small phones (480px) - hero & banner tighter */
+@media (max-width: 480px) {
+    .hero h4 {
+        font-size: 17px;
+    }
+
+    .hero h2 {
+        font-size: 26px;
+    }
+
+    .hero h1 {
+        font-size: 32px;
+    }
+
+    .hero p {
+        font-size: 11px;
+    }
+
+    .hero button {
+        padding: 10px 36px 10px 28px;
+        font-size: 13px;
+    }
+
+    #banner {
+        padding: 16px 12px;
+        min-height: 200px;
+    }
+
+    #banner h2 {
+        font-size: 28px;
+        margin: 12px 0;
+    }
+
+    #banner h4 {
+        font-size: 16px;
+    }
+
+    #banner button {
+        padding: 12px 24px;
+        font-size: 14px;
+        margin-top: 12px;
+    }
+}
+
+/* 320px-like screens - hero, banner & side menu */
+@media (max-width: 360px) {
+    /* Side menu: small on very small screens */
+    #header .navbar {
+        width: min(200px, 78vw);
+        max-width: 200px;
+        padding: 44px 12px 14px;
+        font-size: 14px;
+    }
+
+    #header .navbar #close {
+        top: 10px;
+        left: 12px;
+        font-size: 18px;
+        min-width: 36px;
+        min-height: 36px;
+    }
+
+    #header .navbar a {
+        padding: 8px 0;
+        font-size: 14px;
+        min-height: 38px;
+    }
+
+    .hero {
+        padding: 0 14px;
+        min-height: 260px;
+    }
+
+    .hero h4 {
+        font-size: 15px;
+    }
+
+    .hero h2 {
+        font-size: 22px;
+    }
+
+    .hero h1 {
+        font-size: 26px;
+    }
+
+    .hero p {
+        font-size: 11px;
+    }
+
+    .hero button {
+        padding: 10px 28px 10px 22px;
+        font-size: 12px;
+    }
+
+    #banner {
+        padding: 14px 10px;
+        min-height: 180px;
+        margin-bottom: 30px;
+    }
+
+    #banner h2 {
+        font-size: 22px;
+        margin: 10px 0;
+    }
+
+    #banner h4 {
+        font-size: 14px;
+    }
+
+    #banner button {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+}
+
+/* Extra small devices - features 1 per row */
+@media (max-width: 380px) {
+    #features .feature {
+        flex: 1 1 100%;
+        padding: 18px 16px;
+    }
+
+    #banner2 .form {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #banner2 .form input {
+        border-radius: 5px;
+    }
+
+    #banner2 .form button {
+        border-radius: 5px;
+        width: 100%;
+    }
+
+    .global-p {
+        padding: 25px 15px;
+    }
 }

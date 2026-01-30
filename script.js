@@ -2,8 +2,8 @@ const navbar = document.getElementById('navbar');
 const header = document.getElementById('btn');
 const close = document.getElementById('close');
 
-if(btn) {
-    btn.addEventListener('click', () => {
+if(header) {
+    header.addEventListener('click', () => {
         navbar.classList.add('active');
     });
 };
